@@ -16,17 +16,22 @@ Asegúrate que tu máquina tiene una versión reciente de [Docker](https://www.d
    ```
    $ export MINECRAFTSRV_PATH=`pwd`
    ```
-3. Crea los contenedores para levantar todos los servicios que vamos a utilizar. La primera vez que lo hagas tardará un poco más porque personalizará las imágenes que hemos utilizado como base:
+3. Ajusta los permisos de los directorio compartidos con docker
+   ```
+   $ chown -R <usuario_contenedor_docker> data etc log plugins
+   ```
+   El usuario del contenedor docker suele ser el que tiene el id 1000 en tu ordenador.
+4. Crea los contenedores para levantar todos los servicios que vamos a utilizar. La primera vez que lo hagas tardará un poco más porque personalizará las imágenes que hemos utilizado como base:
    ```
    $ docker-compose up -d
    ```
-4. Si todo va bien, deberías ver las siguientes líneas al cabo de unos minutos:
+5. Si todo va bien, deberías ver las siguientes líneas al cabo de unos minutos:
    ```
    ...
    Creating server_mcjupyter_1 ... done
    Creating server_minecraft_1 ... done
    ```
-5. Esto quiere decir que el contenedor con el servidor de Minecraft vitaminado (`server_minecraft_1`) y la herramienta Jupyter para interactuar con el servidor vía Python (`server_jupyter_1`) ya están arrancando. A continuación debemos asegurarnos de que ambos contenedores han arrancado correctamente, para ello usaremos los siguientes comandos y comprobaremos que obtenemos una salida similar a la que se incluye aquí:
+6. Esto quiere decir que el contenedor con el servidor de Minecraft vitaminado (`server_minecraft_1`) y la herramienta Jupyter para interactuar con el servidor vía Python (`server_jupyter_1`) ya están arrancando. A continuación debemos asegurarnos de que ambos contenedores han arrancado correctamente, para ello usaremos los siguientes comandos y comprobaremos que obtenemos una salida similar a la que se incluye aquí:
    ```
    $ docker logs server_minecraft_1
    ...
